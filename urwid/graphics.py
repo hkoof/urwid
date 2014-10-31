@@ -30,6 +30,7 @@ from urwid.container import Pile, Columns
 from urwid.display_common import AttrSpec
 from urwid.decoration import WidgetDecoration
 
+import logging as log
 
 class BigText(Widget):
     _sizing = frozenset([FIXED])
@@ -543,7 +544,12 @@ class BarGraph(Widget):
         Render BarGraph.
         """
         (maxcol, maxrow) = size
+        log.debug('render size: %r', size)
+
         disp = self.calculate_display((maxcol, maxrow))
+
+        log.debug('display: %r', disp)
+        log.debug('display-len: %r', len(disp))
 
         combinelist = []
         for y_count, row in disp:

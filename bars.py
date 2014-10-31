@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 
 import urwid
+import logging as log
+log.basicConfig(filename='/var/tmp/log', level=log.DEBUG, format='%(asctime)s %(message)s')
+log.debug("~~~~~~~~~~~~~~~~~~~~~~~~")
+
 
 palette = [
     ('normal', 'dark blue', 'dark gray'),
@@ -14,7 +18,8 @@ def main():
         { (1,0): 'normal', }, 
     )
     bardata = [(1,), (2,), (4,), (8,), (16,), (32,)]
-    lines = [10, 20]
+    # lines = [2.0, 10.0]
+    lines = [20, 10]
     graph.set_data(bardata, 40, lines)
     loop = urwid.MainLoop(graph, palette)
     loop.run()

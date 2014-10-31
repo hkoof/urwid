@@ -22,6 +22,11 @@ import string
 import math
 import re
 
+import logging as log
+log.basicConfig(filename='/var/tmp/log', level=log.DEBUG, format='%(asctime)s %(message)s')
+log.debug("~~~~~~~~~~~~~~~~~~~~~~~~")
+
+
 __usage__ = """Usage: speedometer [options] tap [[-c] tap]...
 Monitor network traffic or speed/progress of a file transfer.  At least one
 tap must be entered.  -c starts a new column, otherwise taps are piled
@@ -401,7 +406,9 @@ class SpeedGraph:
         bar = self.bar[-maxcol:]
         if len(bar) < maxcol:
             bar = [[0]]*(maxcol-len(bar)) + bar
-        return bar, graph_range(), graph_lines()
+        hlines = graph_lines()
+        log.debug("hlines = %r", (hlines,))
+        return bar, graph_range(), hlines
 
     def selectable(self):
         return False
