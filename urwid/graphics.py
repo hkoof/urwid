@@ -408,9 +408,13 @@ class BarGraph(Widget):
         0-5 is the hline graphic to use where 0 is a regular underscore
         and 1-5 are the UTF-8 horizontal scan line characters.
         """
+        log.debug("disp = %r", disp)
         log.debug("hlines = %r", hlines)
+        log.debug("top = %r", top)
+        log.debug("maxrow = %r", maxrow)
+
         if self.use_smoothed():
-            log.debug('SMOOTH')
+            log.debug('smooth')
             shiftr = 0
             r = [(0.2, 1),
                  (0.4, 2),
@@ -418,7 +422,7 @@ class BarGraph(Widget):
                  (0.8, 4),
                  (1.0, 5), ]
         else:
-            log.debug('*NOT* SMOOTH')
+            log.debug('*NOT* smooth')
             shiftr = 0.5
             r = [(1.0, 0), ]
 
@@ -443,6 +447,8 @@ class BarGraph(Widget):
                     hrows.append((i, chnum))
                     break
             last_i = i
+
+        log.debug("hrows = %r", hrows)
 
         # fill hlines into disp data
         def fill_row(row, chnum):
