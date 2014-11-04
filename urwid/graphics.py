@@ -377,6 +377,7 @@ class BarGraph(Widget):
         Calculate display data.
         """
         (maxcol, maxrow) = size
+        log.debug('calculate_display size: %r', size)
         bardata, top, hlines = self.get_data((maxcol, maxrow))
         widths = self.calculate_bar_widths((maxcol, maxrow), bardata)
 
@@ -389,9 +390,12 @@ class BarGraph(Widget):
             disp = calculate_bargraph_display(bardata, top, widths,
                                               maxrow)
 
+        logdisp('before hlines', disp)
+
         if hlines:
             disp = self.hlines_display(disp, top, hlines, maxrow)
 
+        logdisp('after hlines', disp)
         return disp
 
     def hlines_display(self, disp, top, hlines, maxrow):
@@ -403,7 +407,9 @@ class BarGraph(Widget):
         0-5 is the hline graphic to use where 0 is a regular underscore
         and 1-5 are the UTF-8 horizontal scan line characters.
         """
+        log.debug("hlines = %r", hlines)
         if self.use_smoothed():
+            log.debug('SMOOTH')
             shiftr = 0
             r = [(0.2, 1),
                  (0.4, 2),
@@ -411,6 +417,7 @@ class BarGraph(Widget):
                  (0.8, 4),
                  (1.0, 5), ]
         else:
+            log.debug('*NOT* SMOOTH')
             shiftr = 0.5
             r = [(1.0, 0), ]
 
@@ -548,9 +555,6 @@ class BarGraph(Widget):
 
         disp = self.calculate_display((maxcol, maxrow))
 
-        log.debug('display: %r', disp)
-        log.debug('display-len: %r', len(disp))
-
         combinelist = []
         for y_count, row in disp:
             l = []
@@ -575,6 +579,7 @@ class BarGraph(Widget):
             combinelist += [(c, None, False)] * y_count
 
         canv = CanvasCombine(combinelist)
+        log.debug('canvas size: (%r, %r) ', canv.cols(), canv.rows() )
         return canv
 
 
@@ -719,6 +724,11 @@ def calculate_bargraph_display(bardata, top, bar_widths, maxrow):
         rowsets.append((y_count, last))
 
     return rowsets
+
+def logdisp(title, disp):
+    log.debug("==> %s", title)
+    for i in disp:
+        log.debug("i = %r", i)
 
 
 class GraphVScale(Widget):
