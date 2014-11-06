@@ -228,8 +228,8 @@ class ListBox(Widget, WidgetContainerMixin):
             widgets to be displayed inside the list box
         :type body: ListWalker
         """
-        if not isinstance(ListWalker, body):
-            raise ListBoxError, "ListBox needs a ListWalker object, e.g. SimpleListWalker (plain lists are note supported anymore)"
+        if not isinstance(body, ListWalker):
+            raise ListBoxError, "ListBox needs a ListWalker object, e.g. SimpleListWalker (plain lists are not supported anymore)"
         self.body = body
 
         try:
