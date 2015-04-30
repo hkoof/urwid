@@ -18,6 +18,7 @@
 #    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 # Urwid web site: http://excess.org/urwid/
+import logging; log = logging.getLogger('hko')
 
 from itertools import chain, repeat
 
@@ -1733,6 +1734,8 @@ class Columns(Widget, WidgetContainerMixin, WidgetContainerListContentsMixin):
         *box_columns* will be displayed with this calculated number of rows,
         filling the full height.
         """
+         
+        log.info("init columns:" )
         self.__super.__init__()
         self._contents = MonitoredFocusList()
         self._contents.set_modified_callback(self._invalidate)

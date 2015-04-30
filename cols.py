@@ -3,6 +3,8 @@
 import sys
 import urwid
 
+import logging
+
 i = 0
 
 def keypress(key):
@@ -17,6 +19,12 @@ def keypress(key):
         duo.set_focus(0)
         listwalker.append(duo)
         mainwidget.focus_position = len(listwalker)-1
+
+log = logging.getLogger('hko')
+log.setLevel(logging.DEBUG)
+log.addHandler(logging.FileHandler("/tmp/log"))
+
+log.info("started")
 
 listwalker = urwid.SimpleFocusListWalker([])
 mainwidget = urwid.ListBox(listwalker)

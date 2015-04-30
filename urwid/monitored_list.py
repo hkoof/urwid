@@ -21,6 +21,7 @@
 
 from urwid.compat import PYTHON3
 
+import logging; log = logging.getLogger('hko')
 
 def _call_modified(fn):
     def call_modified_wrapper(self, *args, **kwargs):
@@ -154,6 +155,7 @@ class MonitoredFocusList(MonitoredList):
         ...
         IndexError: focus index is out of range: -2
         """
+        log.info("_set_focus propertyhandler of MonitoredFocusList called with index = %d" % (index,))
         if not self:
             self._focus = 0
             return
