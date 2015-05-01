@@ -1972,6 +1972,7 @@ class Columns(Widget, WidgetContainerMixin, WidgetContainerListContentsMixin):
 
         position -- index of child widget to be made focus
         """
+        log.info("_set_focus_position on %s,  position = %d" % (self.__class__.__name__, position,))
         try:
             if position < 0 or position >= len(self.contents):
                 raise IndexError
