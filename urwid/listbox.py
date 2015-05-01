@@ -19,6 +19,8 @@
 #
 # Urwid web site: http://excess.org/urwid/
 
+import logging; log = logging.getLogger('hko')
+
 from urwid.util import is_mouse_press
 from urwid.canvas import SolidCanvas, CanvasCombine
 from urwid.widget import Widget, nocache_widget_render_instance, BOX, GIVEN
@@ -914,7 +916,7 @@ class ListBox(Widget, WidgetContainerMixin):
                 attempt_rows = [pref_row]
 
         for row in attempt_rows:
-            it happens here ! if target.move_cursor_to_coords((maxcol,),pref_col,row):
+            if target.move_cursor_to_coords((maxcol,),pref_col,row):
                 break
 
     def get_focus_offset_inset(self, size):
@@ -974,6 +976,7 @@ class ListBox(Widget, WidgetContainerMixin):
          'page down' move cursor down one listbox length
         """
         (maxcol, maxrow) = size
+        log.info("listbox key press: %s" %(key,) )
 
         if self.set_focus_pending or self.set_focus_valign_pending:
             self._set_focus_complete( (maxcol,maxrow), focus=True )

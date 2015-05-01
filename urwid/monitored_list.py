@@ -155,7 +155,6 @@ class MonitoredFocusList(MonitoredList):
         ...
         IndexError: focus index is out of range: -2
         """
-        log.info("_set_focus propertyhandler of MonitoredFocusList called with index = %d" % (index,))
         if not self:
             self._focus = 0
             return
