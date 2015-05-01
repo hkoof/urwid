@@ -914,7 +914,7 @@ class ListBox(Widget, WidgetContainerMixin):
                 attempt_rows = [pref_row]
 
         for row in attempt_rows:
-            if target.move_cursor_to_coords((maxcol,),pref_col,row):
+            it happens here ! if target.move_cursor_to_coords((maxcol,),pref_col,row):
                 break
 
     def get_focus_offset_inset(self, size):
