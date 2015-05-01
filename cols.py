@@ -16,8 +16,8 @@ def keypress(key):
         edit1 = urwid.Edit('', 'Holla')
         edit2 = urwid.Edit('', str(6*i))
         duo = urwid.Columns([edit1, edit2])
-        duo.set_focus(0)
         listwalker.append(duo)
+        duo.focus_position = 0
         mainwidget.focus_position = len(listwalker)-1
 
 log = logging.getLogger('hko')
