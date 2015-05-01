@@ -1935,7 +1935,7 @@ class Columns(Widget, WidgetContainerMixin, WidgetContainerListContentsMixin):
         Set the item in focus
 
         .. note:: only for backwards compatibility. You may also use the new
-            standard container property :attr:`focus_position` to get the focus.
+            standard container property :attr:`focus_position` to set the focus.
 
         :param item: widget or integer index"""
         if isinstance(item, int):
