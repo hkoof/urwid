@@ -19,6 +19,9 @@
 #
 # Urwid web site: http://excess.org/urwid/
 
+import logging
+log = logging.getLogger('hko')
+
 from operator import attrgetter
 
 from urwid.util import (MetaSuper, decompose_tagmarkup, calc_width,
@@ -1526,6 +1529,7 @@ class Edit(Text):
 
         elif self._command_map[key] in (CURSOR_MAX_LEFT, CURSOR_MAX_RIGHT):
             self.highlight = None
+            log.debug("pref_col_maxcol = %r" % (self.pref_col_maxcol,) )
             self.pref_col_maxcol = None, None
 
             x,y = self.get_cursor_coords((maxcol,))
