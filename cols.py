@@ -29,5 +29,10 @@ log.info("started")
 listwalker = urwid.SimpleFocusListWalker([])
 mainwidget = urwid.ListBox(listwalker)
 mainloop = urwid.MainLoop(mainwidget, unhandled_input=keypress)
-mainloop.run()
-
+try:
+    mainloop.run()
+except urwid.ExitMainLoop:
+    pass
+except BaseException:
+    mainloop.screen.stop()
+    raise
