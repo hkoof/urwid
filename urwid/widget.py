@@ -1542,6 +1542,7 @@ class Edit(Text):
 
         else:
             # key wasn't handled
+            log.debug("maxcol = %r" % (maxcol,) )
             return key
 
     def move_cursor_to_coords(self, size, x, y):

@@ -1976,6 +1976,7 @@ class Columns(Widget, WidgetContainerMixin, WidgetContainerListContentsMixin):
                 raise IndexError
         except (TypeError, IndexError):
             raise IndexError("No Columns child widget at position %s" % (position,))
+        log.debug("columns focus set to %d" % (position,))
         self.contents.focus = position
     focus_position = property(_get_focus_position, _set_focus_position, doc="""
         index of child widget in focus. Raises :exc:`IndexError` if read when
